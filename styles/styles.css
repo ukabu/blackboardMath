@@ -1,0 +1,66 @@
+@font-face {
+  font-family: AllOverAgain;
+  src: url(AllOverAgain.ttf);
+}
+@font-face {
+  font-family: chalkboard;
+  src: url(chalkboard.ttf);
+}
+
+@font-face {
+  font-family: DoodlePen_Limited;
+  src: url(DoodlePen_Limited.ttf);
+}
+
+#keypad {
+  position: absolute;
+  right: 0;
+  bottom: 25px;
+}
+
+#keys {
+  opacity: 0.40;
+}
+
+#problem {
+  background-color: black;
+  background-image: none;
+  color: white;
+  
+}
+
+#equation {
+  font-size: 8em;
+  line-height: 1em;
+  text-align: right;
+  font-family: DoodlePen_Limited;
+  width: 200px;
+  display: -webkit-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+}
+
+#question {
+  display: -webkit-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  box-orient: horizontal;
+}
+
+#equation hr {
+  height: 5px;
+  margin: 0;
+  background-color: white;
+}
+
+#operator {
+  text-align: right;
+  display: -webkit-box;
+  display: box;
+  box-align: end;
+  -webkit-box-align: end;
+  box-flex: 1;
+  -webkit-box-flex: 1;
+}
+
