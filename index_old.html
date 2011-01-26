@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+  <head>
+    <title>Flash Math</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script language="javascript" type="text/javascript" src="/usr/palm/frameworks/mojo/mojo.js" x-mojo-version="1"></script>
+    <script language="javascript" type="text/javascript" src="phonegap.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery/mobile/jquery.mobile-1.0a2.min.css" />
+    <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+    <script language="javascript" type="text/javascript" src="jquery/jquery-1.4.4.min.js"></script>
+    <script language="javascript" type="text/javascript">
+      jQuery.noConflict();
+    </script>
+    <script language="javascript" type="text/javascript" src="jquery/mobile/jquery.mobile-1.0a2.min.js"></script>
+    <!-- script language="javascript" type="text/javascript">
+      jQuery(document).ready(function() {
+	if (window.PalmSystem) {
+	    window.PalmSystem.stageReady();
+	}
+      });
+    </script -->
+  </head>
+  <body>
+    <div id="main" data-role="page">
+      <div data-role="header" data-position="fixed">
+        <h1>Flash Math!</h1>
+        <a href="#problem" data-role="button" data-icon="arrow-r" data-iconpos="right" class="ui-btn-right">Start</a>
+      </div>
+      <div data-role="content">
+        <p>Learn math tables in a flash!</p>
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup">
+            <legend>Operations</legend>
+            <input type="checkbox" name="addition" id="addition" />
+            <label for="addition">Addition</label>
+            <input type="checkbox" name="subtraction" id="subtraction" />
+            <label for="subtraction">Subtraction</label>
+            <input type="checkbox" name="multiplication" id="multiplication" />
+            <label for="multiplication">Multiplication</label>
+            <input type="checkbox" name="division" id="division" />
+            <label for="division">Division</label>
+          </fieldset>
+          <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend>Number of problem</legend>
+            <input type="radio" name="problemQty" id="qty10" value="10" />
+            <label for="qty10">10</label>
+            <input type="radio" name="problemQty" id="qty25" value="25" />
+            <label for="qty25">25</label>
+            <input type="radio" name="problemQty" id="qty50" value="50" />
+            <label for="qty50">50</label>
+          </fieldset>
+          <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend>Difficulty</legend>
+            <input type="radio" name="difficulty" id="difficultyEasy" value="easy" />
+            <label for="difficultyEasy">Easy</label>
+            <input type="radio" name="difficulty" id="difficultyNormal" value="normal" />
+            <label for="difficultyNormal">Normal</label>
+            <input type="radio" name="difficulty" id="difficultyHard" value="hard" />
+            <label for="difficultyHard">Hard</label>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div id="problem" data-role="page">
+     <div data-role="header" data-position="fixed">
+        <h1>Flash Math!</h1>
+     </div>
+       <div id="equation">
+	<div id="question">
+	  <div id="operator">
+	    +
+	  </div>
+	  <div id="operands">
+	    <div id="operand1">
+	      23
+	    </div>
+	    <div id="operand2">
+	      8
+	    </div>
+	  </div>
+	</div>
+	<hr />
+	<div id="answer">
+	  31
+	</div>
+      </div>
+      <div id="keypad">
+        <div id="keys" class="ui-grid-b">
+          <div class="ui-block-a"><input type="button" name="btn1" id="btn1" value="1" /></div>
+          <div class="ui-block-b"><input type="button" name="btn2" id="btn2" value="2" /></div>
+          <div class="ui-block-c"><input type="button" name="btn3" id="btn3" value="3" /></div>
+          <div class="ui-block-a"><input type="button" name="btn4" id="btn4" value="4" /></div>
+          <div class="ui-block-b"><input type="button" name="btn5" id="btn5" value="5" /></div>
+          <div class="ui-block-c"><input type="button" name="btn6" id="btn6" value="6" /></div>
+          <div class="ui-block-a"><input type="button" name="btn7" id="btn7" value="7" /></div>
+          <div class="ui-block-b"><input type="button" name="btn8" id="btn8" value="8" /></div>
+          <div class="ui-block-c"><input type="button" name="btn9" id="btn9" value="9" /></div>
+          <div class="ui-block-a"><input type="button" name="btnErase" id="btnErase" value="<" /><!--input type="button" name="btnErase" id="btnErase" data-icon="arrow-l" data-iconpos="notext" /--></div>
+          <div class="ui-block-b"><input type="button" name="btn0" id="btn0" value="0" /></div>
+          <div class="ui-block-c"><input type="button" name="btnEquals" id="btnEquals" value="=" /></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+ 

@@ -1,0 +1,164 @@
+jobutton { background-repeat: repeat-x; }
+
+@font-face {
+  font-family: DoodlePen_Limited;
+  src: url(DoodlePen_Limited.ttf);
+}
+
+.hide {
+  display: none;
+}
+
+#keypad {
+  position: absolute;
+  right: 0;
+  bottom: 75px;
+  width: 180px;
+}
+
+#nextProblem {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#keypad jobutton {
+  opacity: 0.40;
+}
+
+#problem {
+  background-color: black;
+  background-image: none;
+  color: white;
+  
+}
+
+#equation {
+  font-size: 7em;
+  line-height: 1em;
+  text-align: right;
+  font-family: DoodlePen_Limited;
+  width: 160px;
+  display: -webkit-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+}
+
+#question {
+  display: -webkit-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  box-orient: horizontal;
+}
+
+#equation hr {
+  height: 5px;
+  margin: 0;
+  background-color: white;
+}
+
+#operator {
+  text-align: right;
+  display: -webkit-box;
+  display: box;
+  box-align: end;
+  -webkit-box-align: end;
+  box-flex: 1;
+  -webkit-box-flex: 1;
+}
+
+#solution {
+  position: absolute;
+  bottom: 0;
+  left: 180px;  
+}
+
+#congrats{
+  position: absolute;
+  bottom: -100px;
+  left: 140px;  
+}
+
+.total {
+  margin-left: 0;
+  margin-right: 0;
+}
+uNumber {
+  display: -webkit-box;
+  display: box;
+  -webkit-box-pack: end;
+}
+uNumber johtml {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.n0, .n1, .n2, .n3, .n4, .n5, .n6, .n7, .n8, .n9 {
+  position: relative;
+  overflow: hidden;
+  height: 53px;
+}
+.n0 img, .n1 img, .n2 img, .n3 img, .n4 img, .n5 img, .n6 img, .n7 img, .n8 img, .n9 img {
+  position: absolute;
+  top: 0;
+}
+
+uNumber.strike img {
+  top: -53px;
+}
+.n0.strike img, .n1.strike img, .n2.strike img, .n3.strike img, .n4.strike img, .n5.strike img, .n6.strike img, .n7.strike img, .n8.strike img, .n9.strike img {
+  top: -53px;
+}
+.n0     { width: 39px; }
+.n0 img { left: 0; }
+.n1     { width: 26px; }
+.n1 img { left: -39px; }
+.n2     { width: 32px; }
+.n2 img { left: -65px; }
+.n3     { width: 28px; }
+.n3 img { left: -97px; }
+.n4     { width: 32px; }
+.n4 img { left: -125px; }
+.n5     { width: 32px; }
+.n5 img { left: -158px; }
+.n6     { width: 35px; }
+.n6 img { left: -189px; }
+.n7     { width: 30px; }
+.n7 img { left: -224px; }
+.n8     { width: 33px; }
+.n8 img { left: -254px; }
+.n9     { width: 35px; }
+.n9 img { left: -287px; }
+
+uCongrats {
+}
+
+uCongrats johtml {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.great, .bravo, .nice, .good {
+  position: relative;
+  overflow: hidden;
+  height: 106px;
+}
+.great img, .bravo img, .nice img, .good img {
+  position: absolute;
+  top: 0;
+}
+.great     {width: 168px;}
+.great img {left: 0;}
+.bravo     {width: 169px;}
+.bravo img {left: -171px;}
+.nice      {width: 127px;}
+.nice  img {left: -340px;}
+.good      {width: 166px;}
+.goog  img {left: -468px;}
+
+jooption.operator {
+  font-size: large;
+}

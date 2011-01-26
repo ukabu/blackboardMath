@@ -1,0 +1,170 @@
+Problem = function(options) {
+};
+
+Problem.operand = function(difficulty, allowZero) {
+  return Math.floor(allowZero ? Math.random() * (difficulty + 1) : (Math.random() * difficulty) + 1);
+}
+
+Problem.generate = function(operator, difficulty) {
+  var problem = new Problem();
+  
+  problem.operand1 = Problem.operand(difficulty);
+  problem.operand2 = Problem.operand(difficulty, operator != "/");
+  problem.operator = operator;
+
+  switch(operator) {
+    case "+" :
+      problem.solution = problem.operand1 + problem.operand2;
+      break;
+    case "-" :
+      problem.solution = problem.operand1 - problem.operand2;
+      break;
+    case "x" :
+      problem.solution = problem.operand1 * problem.operand2;
+      break;
+    case "/" :
+      problem.solution = problem.operand1;
+      problem.operand1 = problem.solution * problem.operand2;
+      break;
+  }
+  
+  return problem;
+}
+Problem.prototype = {
+};
+
+Problems = function(operator, qty, difficulty) {
+  this.operator = operator;
+  this.qty = qty;
+  this.difficulty = difficulty;
+  this.iCurrent = -1;
+  this.problems = new Array(qty);
+
+  for (var i = 0; i < this.problems.length; i++) {
+    this.problems[i] = Problem.generate(operator, difficulty);
+  }
+};
+
+Problems.prototype = {
+  next: function() {
+    if (this.iCurrent < this.problems.length) {
+      this.iCurrent++;
+    }
+    
+    return this.problems[this.iCurrent]
+  }
+};
+
+uNumber = function(data) {
+  joControl.apply(this, arguments);
+};
+
+uNumber.extend(joControl,  {
+  tagName: "uNumber",
+  draw: function() {
+    var data = this.data ? this.data.toString() : "";
+    for (i = 0; i < data.length; i++) {
+      this.container.appendChild(new joHTML("<img src='numbers.png' />").setStyle({className: "n"+data[i]}).container);
+    }
+  }
+});
+
+ProblemCard = function() {
+  this.problem = new joRecord();
+  this.operand1 = this.problem.link("operand1");
+  this.operand2 = this.problem.link("operand2");
+  this.operator = this.problem.link("operator");
+  this.solution = this.problem.link("solution");
+  this.answer = new joRecord({answer: ""}).link("answer");
+
+  joCard.call(this, [new joContainer([
+      new joContainer([
+        new joCaption(this.operator).setStyle({id: "operator"}),
+        new joContainer([
+          new uNumber(this.operand1).setStyle({id: "operand1"}),
+          new uNumber(this.operand2).setStyle({id: "operand2"})
+        ]).setStyle({id:"operands"})
+      ]).setStyle({id: "question"}),
+      new joHTML("<hr />").setStyle("total"),
+      new uNumber(this.answer).setStyle({id: "answer"})
+    ]).setStyle({id:"equation"}),
+    new Keypad().setStyle({id: "keypad"})
+      .numberKeyEvent.subscribe(this.numberKeyPressed.bind(this))
+      .equalsKeyEvent.subscribe(this.equalsKeyPressed.bind(this))
+      .eraseKeyEvent.subscribe(this.eraseKeyPressed.bind(this))
+      .plusMinusKeyEvent.subscribe(this.minusKeyPressed.bind(this))
+  ])
+  this.setTitle("Flash Math!!!").setStyle({id: "problem"});
+}
+ProblemCard.extend(joCard, {
+  newProblem: function(problem) {
+    this.problem.setData(problem);
+    this.answer.setData("");
+    
+    return this;
+  },
+  numberKeyPressed: function(button) {
+    var a = this.answer.getData();
+    var sign = a.charAt(0) == "-" ? "-" : ""
+    var number = a.substring(sign.length);
+    
+    if (number.length < 3) {
+      this.answer.setData(sign + number + button);
+    }
+  },
+  minusKeyPressed: function() {
+    var a = this.answer.getData();
+    var sign = a.charAt(0) == "-" ? "-" : ""
+    var number = a.substring(sign.length);
+    
+    this.answer.setData((sign == "-" ? "" : "-") + number);
+  },
+  eraseKeyPressed: function() {
+    var a = this.answer.getData();
+    this.answer.setData(a.substring(0, a.length - 1));
+  },
+  equalsKeyPressed: function() {
+    App.stack.push(
+      joCache.get(parseInt(this.answer.getData()) == this.solution.getData() ? "goodAnswer" : "badAnswer")
+        .apply(this.problem.getData(), this.answer.getData())
+    );
+  }
+});
+
+Keypad = function() {
+  this.numberKeyEvent = new joSubject(this);
+  this.equalsKeyEvent = new joSubject(this);
+  this.eraseKeyEvent = new joSubject(this);
+  this.plusMinusKeyEvent = new joSubject(this);
+  var self = this;
+  
+  var newKey = function(label, listener) { return new joButton(label).selectEvent.subscribe(listener.bind(self)); };
+
+  joContainer.call(this, [[
+    new joFlexrow([newKey("1", this.numberKeyPressed), newKey("2", this.numberKeyPressed), newKey("3", this.numberKeyPressed)]),
+    new joFlexrow([newKey("4", this.numberKeyPressed), newKey("5", this.numberKeyPressed), newKey("6", this.numberKeyPressed)]),
+    new joFlexrow([newKey("7", this.numberKeyPressed), newKey("8", this.numberKeyPressed), newKey("9", this.numberKeyPressed)]),
+    new joFlexrow([newKey("-", this.plusMinusKeyPressed), newKey("0", this.numberKeyPressed), new joCaption("&nbsp;")]),
+    new joFlexrow([newKey("&lt;", this.eraseKeyPressed), newKey("=", this.equalsKeyPressed)])
+  ]]);
+}
+Keypad.extend(joContainer, {
+  numberKeyPressed: function(number) {
+    this.numberKeyEvent.fire(number);
+  },
+  equalsKeyPressed: function() {
+    this.equalsKeyEvent.fire();
+  },
+  eraseKeyPressed: function() {
+    this.eraseKeyEvent.fire();
+  },
+  plusMinusKeyPressed: function() {
+    this.plusMinusKeyEvent.fire();
+  }
+});
+
+// using joCache here to defer creation of this
+// view until we actually use it
+joCache.set("problem", function() {
+  return new ProblemCard();
+});

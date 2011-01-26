@@ -1,0 +1,9 @@
+{
+	"id": "net.ukabu.flashmath",
+	"version": "1.0.0",
+	"vendor": "Ukabu",
+	"type": "web",
+	"main": "index.html",
+	"title": "Flash Math!",
+	"icon": "icon.png"
+}
