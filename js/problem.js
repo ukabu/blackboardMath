@@ -62,7 +62,17 @@ uNumber = function(data) {
 uNumber.extend(joControl,  {
   tagName: "uNumber",
   draw: function() {
-    var data = this.data || this.data == 0 ? this.data.toString() : "";
+    if (this.data == null || this.data == "") {
+      return;
+    }
+
+    var data = parseInt(this.data);
+    var minus = data < 0 || this.data == "-";
+    data = isNaN(data) ? "" : Math.abs(data).toString();
+    
+    if (minus) {
+      this.container.appendChild(new joHTML("-").setStyle({className: "minus"}).container);
+    }
     for (i = 0; i < data.length; i++) {
       this.container.appendChild(new joHTML("<img src='numbers.png' />").setStyle({className: "n"+data[i]}).container);
     }
