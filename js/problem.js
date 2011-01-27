@@ -62,7 +62,7 @@ uNumber = function(data) {
 uNumber.extend(joControl,  {
   tagName: "uNumber",
   draw: function() {
-    var data = this.data ? this.data.toString() : "";
+    var data = this.data || this.data == 0 ? this.data.toString() : "";
     for (i = 0; i < data.length; i++) {
       this.container.appendChild(new joHTML("<img src='numbers.png' />").setStyle({className: "n"+data[i]}).container);
     }
