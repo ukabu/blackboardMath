@@ -26,7 +26,7 @@ joCache.set("menu", function() {
 				  
       App.nextProblem();
     })
-  ]).setTitle("Flash Math!");
+  ]).setTitle("Blackboard / Math!");
   
   return card;
 });

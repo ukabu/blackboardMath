@@ -36,7 +36,7 @@ BadAnswerCard = function() {
       App.nextProblem();
     })
   ])
-  this.setTitle("Flash Math!!!").setStyle({id: "problem"});
+  this.setTitle("Blackboard Math!!!").setStyle({id: "problem"});
 }
 BadAnswerCard.extend(joCard, {
   apply: function(problem, answer) {
@@ -73,7 +73,7 @@ GoodAnswerCard = function() {
       App.nextProblem();
     })
   ])
-  this.setTitle("Flash Math!!!").setStyle({id: "problem"});
+  this.setTitle("Blackboard / Math!!!").setStyle({id: "problem"});
 }
 GoodAnswerCard.extend(joCard, {
   apply: function(problem, answer) {

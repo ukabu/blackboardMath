@@ -1,9 +1,9 @@
 {
-	"id": "net.ukabu.flashmath",
+	"id": "net.ukabu.blackboard",
 	"version": "1.0.0",
 	"vendor": "Ukabu",
 	"type": "web",
 	"main": "index.html",
-	"title": "Flash Math!",
+	"title": "Blackboard / Math!",
 	"icon": "icon.png"
 }

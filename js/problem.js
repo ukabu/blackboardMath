@@ -94,7 +94,7 @@ ProblemCard = function() {
       .eraseKeyEvent.subscribe(this.eraseKeyPressed.bind(this))
       .plusMinusKeyEvent.subscribe(this.minusKeyPressed.bind(this))
   ])
-  this.setTitle("Flash Math!!!").setStyle({id: "problem"});
+  this.setTitle("Blackboard / Math!!!").setStyle({id: "problem"});
 }
 ProblemCard.extend(joCard, {
   newProblem: function(problem) {
