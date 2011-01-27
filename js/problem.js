@@ -62,7 +62,7 @@ uNumber = function(data) {
 uNumber.extend(joControl,  {
   tagName: "uNumber",
   draw: function() {
-    if (this.data == null || this.data == "") {
+    if (this.data == null || this.data === "") {
       return;
     }
 
