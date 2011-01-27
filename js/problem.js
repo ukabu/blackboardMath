@@ -144,8 +144,8 @@ Keypad = function() {
     new joFlexrow([newKey("1", this.numberKeyPressed), newKey("2", this.numberKeyPressed), newKey("3", this.numberKeyPressed)]),
     new joFlexrow([newKey("4", this.numberKeyPressed), newKey("5", this.numberKeyPressed), newKey("6", this.numberKeyPressed)]),
     new joFlexrow([newKey("7", this.numberKeyPressed), newKey("8", this.numberKeyPressed), newKey("9", this.numberKeyPressed)]),
-    new joFlexrow([newKey("-", this.plusMinusKeyPressed), newKey("0", this.numberKeyPressed), new joCaption("&nbsp;")]),
-    new joFlexrow([newKey("&lt;", this.eraseKeyPressed), newKey("=", this.equalsKeyPressed)])
+    new joFlexrow([newKey("&plusmn;", this.plusMinusKeyPressed), newKey("0", this.numberKeyPressed), new joCaption("&nbsp;")]),
+    new joFlexrow([newKey("&larr;", this.eraseKeyPressed), newKey("=", this.equalsKeyPressed)])
   ]]);
 }
 Keypad.extend(joContainer, {
