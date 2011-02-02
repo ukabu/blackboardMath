@@ -1,13 +1,23 @@
 App = {
   problems: null,
+  statisticsTracking: true,
+  track: function(category, action, label, value) {
+    if (!this.statisticsTracking || window._gap === undefined) return;
+    
+    _gap.push(['_trackEvent'].concat(arguments));
+  },
   nextProblem: function() {
     this.stack.showHome();
     problem = this.problems.next();
     this.problems.startTimer();
     if (problem) {
+      this.track("App", "NextProblem");
       this.stack.push(joCache.get("problem").newProblem(problem));
     } else {
       this.problems.stopTimer();
+      this.track("App", "End", "Good Answers", this.problems.nGoodAnswers);
+      this.track("App", "End", "Bad Answers", this.problems.nBadAnswers);
+      this.track("App", "End", "Total Time", this.problems.totalTime);
       this.stack.push(joCache.get("summary").apply(this.problems));
     }
   },

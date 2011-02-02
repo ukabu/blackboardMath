@@ -22,6 +22,7 @@ joCache.set("menu", function() {
     new joLabel("Difficulty"),
     new joOption([{title: "Normal", id: 12}, {title: "Hard", id: 24}], preferences.link("difficulty")).setValue(0),
     new joButton("Start").selectEvent.subscribe(function() {
+      App.track("App", "Start", "o:"+preferences.getProperty("operator")+",q:"+preferences.getProperty("qty")+",d:"+preferences.getProperty("difficulty"));
       App.problems = new Problems(preferences.getProperty("operator"), preferences.getProperty("qty"), preferences.getProperty("difficulty"));
       App.nextProblem();
     })
