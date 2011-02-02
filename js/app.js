@@ -3,8 +3,12 @@ App = {
   nextProblem: function() {
     this.stack.showHome();
     problem = this.problems.next();
+    this.problems.startTimer();
     if (problem) {
       this.stack.push(joCache.get("problem").newProblem(problem));
+    } else {
+      this.stopTimer();
+      // show results
     }
   },
   load: function() {

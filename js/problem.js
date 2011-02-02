@@ -31,6 +31,13 @@ Problem.generate = function(operator, difficulty) {
   return problem;
 }
 Problem.prototype = {
+  validate: function(answer) {
+    answer = parseInt(answer);
+    this.success = answer == this.solution;
+    this.skipped = false;
+    
+    return this.success;
+  }
 };
 
 Problems = function(operator, qty, difficulty) {
@@ -39,6 +46,7 @@ Problems = function(operator, qty, difficulty) {
   this.difficulty = difficulty;
   this.iCurrent = -1;
   this.problems = new Array(qty);
+  this.totalTime = 0;
 
   for (var i = 0; i < this.problems.length; i++) {
     this.problems[i] = Problem.generate(operator, difficulty);
@@ -46,6 +54,17 @@ Problems = function(operator, qty, difficulty) {
 };
 
 Problems.prototype = {
+  startTimer: function() {
+    if (!this.timerInstant) {
+      this.timerInstant = Date.now();
+    }
+  },
+  stopTimer: function() {
+    if (this.timerInstant) {
+      this.totalTime += Date.now() - this.timerInstant;
+    }
+    this.timerInstant = null;
+  },
   next: function() {
     if (this.iCurrent < this.problems.length) {
       this.iCurrent++;
@@ -135,7 +154,7 @@ ProblemCard.extend(joCard, {
   },
   equalsKeyPressed: function() {
     App.stack.push(
-      joCache.get(parseInt(this.answer.getData()) == this.solution.getData() ? "goodAnswer" : "badAnswer")
+      joCache.get(this.problem.getData().validate(this.answer.getData()) ? "goodAnswer" : "badAnswer")
         .apply(this.problem.getData(), this.answer.getData())
     );
   }
