@@ -7,8 +7,8 @@ App = {
     if (problem) {
       this.stack.push(joCache.get("problem").newProblem(problem));
     } else {
-      this.stopTimer();
-      // show results
+      this.problems.stopTimer();
+      this.stack.push(joCache.get("summary").apply(this.problems));
     }
   },
   load: function() {

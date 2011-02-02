@@ -61,17 +61,41 @@ Problems.prototype = {
   },
   stopTimer: function() {
     if (this.timerInstant) {
-      this.totalTime += Date.now() - this.timerInstant;
+      this.totalTime += (Date.now() - this.timerInstant);
     }
     this.timerInstant = null;
   },
+  get timeElapsed() {
+    this.stopTimer();
+    var sec = Math.floor(this.totalTime / 1000);
+    var min = Math.floor(sec / 60);
+    
+    return "" + min + " minutes and " + sec + " seconds";
+  },
+  set timeElapsed(ignore) {},
   next: function() {
     if (this.iCurrent < this.problems.length) {
       this.iCurrent++;
     }
     
     return this.problems[this.iCurrent]
-  }
+  },
+  get nGoodAnswers() {
+    var n = 0;
+    this.problems.forEach(function(problem) {
+      if (problem.success) n++;
+    });
+    return n;
+  },
+  set nGoodAnswers(ignore) {},
+  get nBadAnswers() {
+    var n = 0;
+    this.problems.forEach(function(problem) {
+      if (!problem.success) n++;
+    });
+    return n;
+  },
+  set nBadAnswers(ignore) {}
 };
 
 uNumber = function(data) {
