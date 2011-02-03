@@ -67,8 +67,8 @@ Problems.prototype = {
   },
   get timeElapsed() {
     this.stopTimer();
-    var sec = Math.floor(this.totalTime / 1000);
-    var min = Math.floor(sec / 60);
+    var sec = Math.floor(this.totalTime / 1000) % 60;
+    var min = Math.floor(this.totalTime / (60 * 1000));
     
     return "" + min + " minutes and " + sec + " seconds";
   },
