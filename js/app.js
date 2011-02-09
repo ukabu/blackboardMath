@@ -2,9 +2,9 @@ App = {
   problems: null,
   statisticsTracking: true,
   track: function(category, action, label, value) {
-    if (!this.statisticsTracking || window._gap === undefined) return;
+    if (!this.statisticsTracking || window._gaq === undefined) return;
     
-    _gap.push(['_trackEvent'].concat(arguments));
+    _gaq.push(['_trackEvent'].concat(arguments));
   },
   nextProblem: function() {
     this.stack.showHome();
