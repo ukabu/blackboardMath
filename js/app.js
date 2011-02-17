@@ -4,7 +4,7 @@ App = {
   track: function(category, action, label, value) {
     if (!this.statisticsTracking || window._gaq === undefined) return;
     
-    _gaq.push(['_trackEvent'].concat(arguments));
+    window._gaq.push(['_trackEvent'].concat(arguments));
   },
   nextProblem: function() {
     this.stack.showHome();
@@ -43,5 +43,8 @@ App = {
     this.stack.push(joCache.get("menu"));
     
     joGesture.backEvent.subscribe(this.stack.pop, this.stack);
+    if (this.statisticsTracking) {
+      Analytics.load();
+    }
   }
 };
