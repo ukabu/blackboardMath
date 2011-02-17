@@ -4,7 +4,15 @@ App = {
   track: function(category, action, label, value) {
     if (!this.statisticsTracking || window._gaq === undefined) return;
     
-    window._gaq.push(['_trackEvent'].concat(arguments));
+    var event = ['_trackEvent'];
+    event.push(category);
+    event.push(action);
+    if (label !== undefined) {
+      event.push(label);
+      if (value !== undefined) event.push(value);
+    }
+    
+    window._gaq.push(event);
   },
   nextProblem: function() {
     this.stack.showHome();
