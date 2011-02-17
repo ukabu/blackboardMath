@@ -11,6 +11,7 @@ It is build using the excellent [Jo](http://joapp.com/) Javascript application f
 If you use Google Chrome or Safari, you can try it right now!
 
 Try Blackboard / Math!
+
  * [In you browser (Chrome, Safari, iPhone, iPad, Android)](http://ukabu.github.com/blackboardMath)
  * [On your HP/Palm Phone (webOS)](http://developer.palm.com/appredirect/?packageid=net.ukabu.blackboardmath)
 
