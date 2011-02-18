@@ -31,10 +31,6 @@ App = {
   },
   load: function() {
     jo.load();
-    if (window.PalmSystem) {
-      window.PalmSystem.stageReady();
-      window.PalmSystem.setWindowOrientation('free');
-    }
 
     this.scn = new joScreen(
       new joContainer([
@@ -53,6 +49,11 @@ App = {
     joGesture.backEvent.subscribe(this.stack.pop, this.stack);
     if (this.statisticsTracking) {
       Analytics.load();
+    }
+
+    if (window.PalmSystem) {
+      window.PalmSystem.stageReady();
+      window.PalmSystem.setWindowOrientation('free');
     }
   }
 };
