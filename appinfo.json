@@ -1,9 +1,0 @@
-{
-	"id": "net.ukabu.blackboardmath",
-	"version": "0.9.0",
-	"vendor": "Ukabu",
-	"type": "web",
-	"main": "index.html",
-	"title": "Blackboard / Math!",
-	"icon": "icon.png"
-}
