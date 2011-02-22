@@ -177,3 +177,18 @@ jooption.operator {
     -webkit-transform-origin: bottom right;
   }
 }
+
+jotoolbar jobutton {
+  background: transparent url(back-mini.png) 10px center no-repeat;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+  padding: 5px 10px 5px 10px;
+  margin: -5px 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  color: #ddd;
+  float: left;
+  height: 1em;
+  font-weight: bold;
+}

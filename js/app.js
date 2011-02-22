@@ -29,8 +29,32 @@ App = {
       this.stack.push(joCache.get("summary").apply(this.problems));
     }
   },
+  showDocument: function(url) {
+    if (window.PalmSystem) {
+      var serviceBridge = new PalmServiceBridge();
+      serviceBridge.call("palm://com.palm.applicationManager/open", JSON.stringify({
+	id: "com.palm.app.browser",
+	params: {
+	  target: url
+	}
+      }));
+    } else {
+      window.open(url, "_new");
+    }
+    App.scn.hidePopup();
+  },
   load: function() {
     jo.load();
+
+    var helpPopup = [
+      new joTitle("Information"),
+      new joGroup([
+	new joButton("Homepage").selectEvent.subscribe(function() {this.showDocument("https://github.com/ukabu/blackboardMath#readme");}.bind(this)),
+	new joButton("Support").selectEvent.subscribe(function() {this.showDocument("https://github.com/ukabu/blackboardMath/issues");}.bind(this)),
+	new joButton("Share / Rate").selectEvent.subscribe(function() {this.showDocument("http://developer.palm.com/appredirect/?packageid=net.ukabu.blackboardmath");}.bind(this))
+      ]),
+      new joButton("Dismiss").selectEvent.subscribe(function() { App.scn.hidePopup(); })
+    ];
 
     this.scn = new joScreen(
       new joContainer([
@@ -38,7 +62,12 @@ App = {
 	  this.nav = new joNavbar(),
 	  this.stack = new joStack()
 	]),
-	this.toolbar = new joToolbar("Learn you math tables in a flash!")
+	this.toolbar = new joToolbar([
+	  new joButton("i").selectEvent.subscribe(function() {
+	    App.scn.showPopup(helpPopup);
+	  }),
+	  "Learn you math tables in a flash!"
+	])
       ]).setStyle({position: "absolute", top: "0", left: "0", bottom: "0", right: "0"})
     );
     
