@@ -30,13 +30,11 @@ App = {
     }
   },
   showDocument: function(url) {
+    App.track("App", "Information", url);
     if (window.PalmSystem) {
       var serviceBridge = new PalmServiceBridge();
       serviceBridge.call("palm://com.palm.applicationManager/open", JSON.stringify({
-	id: "com.palm.app.browser",
-	params: {
-	  target: url
-	}
+	target: url
       }));
     } else {
       window.open(url, "_new");
@@ -81,8 +79,10 @@ App = {
     }
 
     if (window.PalmSystem) {
-      window.PalmSystem.stageReady();
-      window.PalmSystem.setWindowOrientation('free');
+      window.setTimeout(function() {
+	window.PalmSystem.stageReady();
+	window.PalmSystem.setWindowOrientation('free');
+      }, 50);
     }
   }
 };
