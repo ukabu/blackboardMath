@@ -2,17 +2,9 @@ App = {
   problems: null,
   statisticsTracking: true,
   track: function(category, action, label, value) {
-    if (!this.statisticsTracking || window._gaq === undefined) return;
+    if (!this.statisticsTracking) return;
     
-    var event = ['_trackEvent'];
-    event.push(category);
-    event.push(action);
-    if (label !== undefined) {
-      event.push(label);
-      if (value !== undefined) event.push(value);
-    }
-    
-    window._gaq.push(event);
+    window.capptain.agent.sendSessionEvent(action, {label: label, value: value});
   },
   nextProblem: function() {
     this.stack.showHome();
@@ -75,7 +67,7 @@ App = {
     
     joGesture.backEvent.subscribe(this.stack.pop, this.stack);
     if (this.statisticsTracking) {
-      Analytics.load();
+      window.capptain.agent.startActivity('welcome');
     }
 
     if (window.PalmSystem) {

@@ -1,5 +1,6 @@
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-3515894-2']);
+_gaq.push(['_setDomainName', 'none']);
 _gaq.push(['_trackPageview']);
 
 Analytics = {
