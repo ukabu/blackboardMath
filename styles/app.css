@@ -41,7 +41,7 @@ jobutton { background-repeat: repeat-x; }
   text-align: right;
   font-family: sans-serif;
   font-weight: bold;
-  text-shadow: 0.01em 0.01em 0.03em white, -0.01em -0.01em 0.03em white;;
+  text-shadow: 0.01em 0.01em 0.03em white, -0.01em -0.01em 0.03em white;
   width: 160px;
   display: -webkit-box;
   display: box;
@@ -78,11 +78,37 @@ jobutton { background-repeat: repeat-x; }
   left: 180px;  
 }
 
-#congrats{
+uCongrats {
   position: absolute;
-  bottom: -100px;
-  left: 140px;  
+  font-size: 5em;
+  top: 80px;
+  left: 30px;
+  color: green;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-shadow: 0.01em 0.01em 0.03em green, -0.01em -0.01em 0.03em green;
+
+  -webkit-transform: rotate(-30deg);
+  -webkit-transform-origin: 50% 50%;
+
+  -webkit-animation-name: explode;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-duration: 1.25s;
 }
+
+ @-webkit-keyframes explode {
+    from {
+      -webkit-transform: rotate(0deg) scale(0);
+      -webkit-transform-origin: 50% 50%;
+    }
+    to  {
+      -webkit-transform-origin: 50% 50%;
+      -webkit-animation-timing-function: ease-in;
+      -webkit-transform: rotate(-30deg) scale(1);
+    }
+  }
+  
+uCongrats div { position: relative;}
 
 .total {
   margin-left: 0;
@@ -104,7 +130,7 @@ uChalk {
   position: relative;
 }
 
-uNumber span, .chalk span, uChalk span {
+uNumber span, .chalk span, uChalk span, uCongrats div span {
   background: url(chalk.png) repeat;
   position: absolute;
   display: block;
@@ -129,6 +155,10 @@ uNumber .minus {
 .n0 img, .n1 img, .n2 img, .n3 img, .n4 img, .n5 img, .n6 img, .n7 img, .n8 img, .n9 img {
   position: absolute;
   top: 0;
+}
+
+uNumber.strike {
+  text-decoration: line-through;
 }
 
 uNumber.strike img {
@@ -158,31 +188,6 @@ uNumber.strike img {
 .n9     { width: 35px; }
 .n9 img { left: -287px; }
 
-uCongrats {
-}
-
-uCongrats johtml {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.great, .bravo, .nice, .good {
-  position: relative;
-  overflow: hidden;
-  height: 106px;
-}
-.great img, .bravo img, .nice img, .good img {
-  position: absolute;
-  top: 0;
-}
-.great     {width: 168px;}
-.great img {left: 0;}
-.bravo     {width: 169px;}
-.bravo img {left: -171px;}
-.nice      {width: 127px;}
-.nice  img {left: -340px;}
-.good      {width: 166px;}
-.goog  img {left: -468px;}
 
 jooption.operator {
   font-size: large;
@@ -190,10 +195,21 @@ jooption.operator {
 
 @media only screen and (min-width: 760px) {
   #equation {
-  font-size: 10em;
-  width: 320px;
-  font-weight: normal;
-
+    font-size: 10em;
+    width: 320px;
+    font-weight: normal;
+  }
+  uCongrats {
+    font-size: 10em;
+    top: 160px;
+    left: 60px;
+  }
+  #solution {
+    position: absolute;
+    bottom: 50px;
+    left: 340px;
+    color: red;
+    text-shadow: 0.01em 0.01em 0.03em red, -0.01em -0.01em 0.03em red;
   }
   #keypad {
     -webkit-transform: scale(1.5);

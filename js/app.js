@@ -68,7 +68,10 @@ App = {
   },
   ready: function() {
     setTimeout(function() {
-      if (window.PalmSystem) window.PalmSystem.stageReady();
+      if (window.PalmSystem) {
+	window.PalmSystem.stageReady();
+	window.PalmSystem.setWindowOrientation('free');
+      }
       
       this.loadAnalytics();
     }.bind(this), 1);
