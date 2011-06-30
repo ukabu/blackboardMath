@@ -184,6 +184,21 @@ ProblemCard.extend(joCard, {
   }
 });
 
+uButton = function(data) {
+  joButton.apply(this, arguments);
+};
+
+uButton.extend(joButton, {
+  focus: function() {
+    joControl.prototype.focus.apply(this, arguments);
+    joDefer(joFocus.clear, joFocus, 500);
+  },
+  blur: function() {
+    joControl.prototype.blur.apply(this, arguments);
+    this.container.blur();
+  }
+});
+
 Keypad = function() {
   this.numberKeyEvent = new joSubject(this);
   this.equalsKeyEvent = new joSubject(this);
@@ -191,7 +206,7 @@ Keypad = function() {
   this.plusMinusKeyEvent = new joSubject(this);
   var self = this;
   
-  var newKey = function(label, listener) { return new joButton(label).selectEvent.subscribe(listener.bind(self)); };
+  var newKey = function(label, listener) { return new uButton(label).selectEvent.subscribe(listener.bind(self)); };
 
   joContainer.call(this, [[
     new joFlexrow([newKey("1", this.numberKeyPressed), newKey("2", this.numberKeyPressed), newKey("3", this.numberKeyPressed)]),

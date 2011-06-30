@@ -34,8 +34,6 @@ App = {
     App.scn.hidePopup();
   },
   load: function() {
-    jo.load();
-
     var helpPopup = [
       new joTitle("Information"),
       new joGroup([
@@ -63,18 +61,24 @@ App = {
     
     this.nav.setStack(this.stack);
     
-    this.stack.push(joCache.get("menu"));
     
     joGesture.backEvent.subscribe(this.stack.pop, this.stack);
-    if (this.statisticsTracking) {
-      window.capptain.agent.startActivity('welcome');
-    }
 
-    if (window.PalmSystem) {
-      window.setTimeout(function() {
-	window.PalmSystem.stageReady();
-	window.PalmSystem.setWindowOrientation('free');
-      }, 50);
-    }
+    this.stack.push(joCache.get("menu"));
+  },
+  ready: function() {
+    setTimeout(function() {
+      if (window.PalmSystem) window.PalmSystem.stageReady();
+      
+      this.loadAnalytics();
+    }.bind(this), 1);
+  },
+  loadAnalytics: function() {
+    if (!this.statisticsTracking) return;
+    setTimeout(function() {
+      joScript("js/capptain-sdk-web-0.7.0/capptain-sdk.js", function(error) {
+	window.capptain.agent.startActivity('welcome');
+      });
+    }.bind(this), 1);
   }
 };

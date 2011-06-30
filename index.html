@@ -12,17 +12,25 @@
   <link rel="stylesheet" href="styles/jo/jo2.css" type="text/css">
   <link rel="stylesheet" href="styles/app.css" type="text/css">
   <link rel="apple-touch-icon" href="icon.png">
+</head>
+<body>
   <script src="js/jo/jo_min.js"></script>
 
-  <script src="js/google_analytics.js"></script>
   <script src="js/app.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/problem.js"></script>
   <script src="js/answer.js"></script>
   <script src="js/summary.js"></script>
+
   <script src="js/capptain-conf.js"></script>
-  <script src="js/capptain-sdk-web-0.7.0/capptain-sdk.js"></script>
-</head>
-<body onload="App.load();">
+  <!-- script src="js/capptain-sdk-web-0.7.0/capptain-sdk.js"></script -->
+  
+  <script>
+    window.addEventListener('load', function() {
+      jo.load();
+      App.load();
+      App.ready();
+    });
+  </script>
 </body>
 </html>
