@@ -98,6 +98,19 @@ Problems.prototype = {
   set nBadAnswers(ignore) {}
 };
 
+uChalk = function(data) {
+  joControl.apply(this, arguments);
+};
+uChalk.extend(joControl, {
+  tagName: 'uChalk',
+  draw: function() {
+    if (this.data == null || this.data === "") {
+      return;
+    }
+    this.container.innerHTML = "<span></span>"+this.data;
+  }
+});
+
 uNumber = function(data) {
   joControl.apply(this, arguments);
 };
@@ -105,6 +118,20 @@ uNumber = function(data) {
 uNumber.extend(joControl,  {
   tagName: "uNumber",
   draw: function() {
+    this.drawText.apply(this, arguments);
+  },
+  drawText: function() {
+    if (this.data == null || this.data === "") {
+      return;
+    }
+    var data = parseInt(this.data);
+    var minus = data < 0 || this.data == "-";
+    data = isNaN(data) ? "" : Math.abs(data).toString();
+
+    var text = minus ? "-"+data : data;
+    this.container.innerHTML = "<span></span>"+text;
+  },
+  drawImage: function() {
     if (this.data == null || this.data === "") {
       return;
     }
@@ -132,13 +159,13 @@ ProblemCard = function() {
 
   joCard.call(this, [new joContainer([
       new joContainer([
-        new joCaption(this.operator).setStyle({id: "operator"}),
+        new uChalk(this.operator).setStyle({id: "operator"}),
         new joContainer([
           new uNumber(this.operand1).setStyle({id: "operand1"}),
           new uNumber(this.operand2).setStyle({id: "operand2"})
         ]).setStyle({id:"operands"})
       ]).setStyle({id: "question"}),
-      new joHTML("<hr />").setStyle("total"),
+      new joHTML("<div class='chalk'><span></span><hr/></div>").setStyle("total"),
       new uNumber(this.answer).setStyle({id: "answer"})
     ]).setStyle({id:"equation"}),
     new Keypad().setStyle({id: "keypad"})

@@ -2,7 +2,7 @@
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
 	id		= "net.ukabu.blackboardmath"
-	version 	= "0.9.1">
+	version 	= "0.9.2">
 
 	<name>Blackboard Math!</name>
 
