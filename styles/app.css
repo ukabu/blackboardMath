@@ -74,8 +74,10 @@ jobutton { background-repeat: repeat-x; }
 
 #solution {
   position: absolute;
-  bottom: 0;
+  bottom: 25px;
   left: 180px;  
+  color: red;
+  text-shadow: 0.01em 0.01em 0.03em red, -0.01em -0.01em 0.03em red;
 }
 
 uCongrats {
@@ -88,7 +90,7 @@ uCongrats {
   font-weight: bold;
   text-shadow: 0.01em 0.01em 0.03em green, -0.01em -0.01em 0.03em green;
 
-  -webkit-transform: rotate(-30deg);
+  -webkit-transform: rotate(-32deg);
   -webkit-transform-origin: 50% 50%;
 
   -webkit-animation-name: explode;
@@ -96,20 +98,16 @@ uCongrats {
   -webkit-animation-duration: 1.25s;
 }
 
- @-webkit-keyframes explode {
-    from {
-      -webkit-transform: rotate(0deg) scale(0);
-      -webkit-transform-origin: 50% 50%;
-    }
-    to  {
-      -webkit-transform-origin: 50% 50%;
-      -webkit-animation-timing-function: ease-in;
-      -webkit-transform: rotate(-30deg) scale(1);
-    }
+@-webkit-keyframes explode {
+  from {
+    -webkit-transform: rotate(0deg) scale(0);
   }
+  to  {
+    -webkit-animation-timing-function: ease-in;
+    -webkit-transform: rotate(-32deg) scale(1);
+   }
+}
   
-uCongrats div { position: relative;}
-
 .total {
   margin-left: 0;
   margin-right: 0;
@@ -130,7 +128,7 @@ uChalk {
   position: relative;
 }
 
-uNumber span, .chalk span, uChalk span, uCongrats div span {
+uNumber span, .chalk span, uChalk span {
   background: url(chalk.png) repeat;
   position: absolute;
   display: block;
@@ -208,8 +206,6 @@ jooption.operator {
     position: absolute;
     bottom: 50px;
     left: 340px;
-    color: red;
-    text-shadow: 0.01em 0.01em 0.03em red, -0.01em -0.01em 0.03em red;
   }
   #keypad {
     -webkit-transform: scale(1.5);

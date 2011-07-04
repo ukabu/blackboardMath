@@ -6,7 +6,7 @@ uCongrats.extend(joControl, {
   tagName: "uCongrats",
   draw: function() {
     var data = this.data ? this.data.toString() : "Great !";
-    this.container.innerHTML = '<div><span></span>'+data+'</div>';
+    this.container.innerHTML = '<span></span>'+data+'';
     //this.container.appendChild(new joHTML("<img src='congrats.png' />").setStyle({className: data}).container);
   }
 });
