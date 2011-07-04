@@ -1,10 +1,18 @@
 App = {
   problems: null,
   statisticsTracking: true,
+  startTracking: function() {
+    if (this.trackingStarted) return;
+    
+    window.capptain.agent.startActivity('welcome');
+    this.trackingStarted = true;
+  },
   track: function(category, action, label, value) {
     if (!this.statisticsTracking) return;
-    
-    window.capptain.agent.sendSessionEvent(action, {label: label, value: value});
+    this.doNetworkOperation(function() {
+      this.startTracking();
+      window.capptain.agent.sendSessionEvent(action, {label: label, value: value});
+    }.bind(this));
   },
   nextProblem: function() {
     this.stack.showHome();
@@ -32,6 +40,22 @@ App = {
       window.open(url, "_new");
     }
     App.scn.hidePopup();
+  },
+  doNetworkOperation: function(callback) {
+    if (!window.PalmSystem) {
+      // not on webOS, we assume network is present
+      callback();
+      return;
+    }
+    
+    var serviceBridge = new PalmServiceBridge();
+    serviceBridge.onservicecallback = this. doNetworkBridgeCall = function(stringresponse) {
+      var response = JSON.parse(stringresponse);
+      if (response.isInternetConnectionAvailable) {
+	callback();
+      }
+    }
+    serviceBridge.call("palm://com.palm.connectionmanager/getStatus");
   },
   load: function() {
     var helpPopup = [
@@ -80,7 +104,9 @@ App = {
     if (!this.statisticsTracking) return;
     setTimeout(function() {
       joScript("js/capptain-sdk-web-0.7.0/capptain-sdk.js", function(error) {
-	window.capptain.agent.startActivity('welcome');
+	this.doNetworkOperation(function() {
+	  this.startTracking();
+	}.bind(this));
       });
     }.bind(this), 1);
   }
