@@ -216,6 +216,13 @@ uButton = function(data) {
 };
 
 uButton.extend(joButton, {
+  setEvents: function() {
+    // we completely overide joControl setEvent so it does not capture click events
+    // hackish way to make button clicks work on webos.
+    joEvent.capture(this.container, 'mousedown', this.onMouseDown, this);
+    joEvent.on(this.container, "blur", this.onBlur, this);
+    joEvent.on(this.container, "focus", this.onFocus, this);
+  },
   focus: function() {
     joControl.prototype.focus.apply(this, arguments);
     joDefer(joFocus.clear, joFocus, 500);
