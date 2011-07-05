@@ -1,17 +1,24 @@
 App = {
   problems: null,
   statisticsTracking: true,
-  startTracking: function() {
-    if (this.trackingStarted) return;
+  inTrackingSession: function(callback) {
+    if (!this.statisticsTracking) return;
     
-    window.capptain.agent.startActivity('welcome');
-    this.trackingStarted = true;
+    if (this.agentStatus === 'loaded') {
+      this.doNetworkOperation(function() {
+	callback(window.capptain.agent);
+      }.bind(this));
+    } else if (this.agentStatus === 'loading') {
+      setTimeout(this.inTrackingSession.bind(this), 50, callback);
+    } else {
+      this.doNetworkOperation(function() {
+	this.loadAnalytics(callback);
+      }.bind(this));
+    }
   },
   track: function(category, action, label, value) {
-    if (!this.statisticsTracking) return;
-    this.doNetworkOperation(function() {
-      this.startTracking();
-      window.capptain.agent.sendSessionEvent(action, {label: label, value: value});
+    this.inTrackingSession(function(agent) {
+      agent.sendSessionEvent(action, {label: label, value: value});
     }.bind(this));
   },
   nextProblem: function() {
@@ -58,9 +65,22 @@ App = {
     serviceBridge.call("palm://com.palm.connectionmanager/getStatus");
   },
   load: function() {
+    this.preferences = new joRecord(this);
+    this.preferences.load = function() {
+      this.data.statisticsTracking = localStorage.getItem('statisticsTracking') !== 'false';
+    }
+    this.preferences.save = function() {
+      window.localStorage.setItem('statisticsTracking', this.data.statisticsTracking);
+    }
+    
+    this.preferences.load();
+    
+    var tracking = this.preferences.link("statisticsTracking");
+    
     var helpPopup = [
       new joTitle("Information"),
       new joGroup([
+	new joFlexrow([new joCaption('Collect anonymous statistics'), new joToggle(tracking)]),
 	new joButton("Homepage").selectEvent.subscribe(function() {this.showDocument("https://github.com/ukabu/blackboardMath#readme");}.bind(this)),
 	new joButton("Support").selectEvent.subscribe(function() {this.showDocument("https://github.com/ukabu/blackboardMath/issues");}.bind(this)),
 	new joButton("Share / Rate").selectEvent.subscribe(function() {this.showDocument("http://developer.palm.com/appredirect/?packageid=net.ukabu.blackboardmath");}.bind(this))
@@ -97,17 +117,18 @@ App = {
 	window.PalmSystem.setWindowOrientation('free');
       }
       
-      this.loadAnalytics();
+      this.track('App', 'ready');
     }.bind(this), 1);
   },
-  loadAnalytics: function() {
-    if (!this.statisticsTracking) return;
+  loadAnalytics: function(callback) {
+    this.agentStatus = 'loading';
+    
     setTimeout(function() {
       joScript("js/capptain-sdk-web-0.7.0/capptain-sdk.js", function(error) {
-	this.doNetworkOperation(function() {
-	  this.startTracking();
-	}.bind(this));
-      });
+	window.capptain.agent.startActivity('welcome');
+	callback(window.capptain.agent);
+	this.agentStatus = 'loaded';
+      }.bind(this));
     }.bind(this), 1);
   }
 };
