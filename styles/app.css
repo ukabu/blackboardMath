@@ -36,7 +36,7 @@ jobutton { background-repeat: repeat-x; }
 }
 
 #equation {
-  font-size: 6em;
+  font-size: 5em;
   line-height: 1em;
   text-align: right;
   font-family: sans-serif;
@@ -74,10 +74,10 @@ jobutton { background-repeat: repeat-x; }
 
 #solution {
   position: absolute;
-  bottom: 25px;
-  left: 180px;  
+  bottom: 5px;
+  right: -0.25em;  
   color: red;
-  width: 1.5em;
+  width: 2.25em;
   text-shadow: 0.01em 0.01em 0.03em red, -0.01em -0.01em 0.03em red;
 }
 
@@ -204,9 +204,6 @@ jooption.operator {
     left: 60px;
   }
   #solution {
-    position: absolute;
-    bottom: 50px;
-    left: 340px;
   }
   #keypad {
     -webkit-transform: scale(1.5);
