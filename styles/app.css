@@ -89,19 +89,18 @@ uCongrats {
   color: green;
   font-family: sans-serif;
   font-weight: bold;
-  text-shadow: 0.01em 0.01em 0.03em green, -0.01em -0.01em 0.03em green;
+  /* FIXME: cause rendering issues on webos: text-shadow: 0.01em 0.01em 0.03em green, -0.01em -0.01em 0.03em green; */
 
   -webkit-transform: rotate(-32deg);
-  -webkit-transform-origin: 50% 50%;
-
+  
   -webkit-animation-name: explode;
   -webkit-animation-iteration-count: 1;
-  -webkit-animation-duration: 1.25s;
+  -webkit-animation-duration: 1s;
 }
 
 @-webkit-keyframes explode {
   from {
-    -webkit-transform: rotate(0deg) scale(0);
+    -webkit-transform: rotate(-720deg) scale(0);
   }
   to  {
     -webkit-animation-timing-function: ease-in;
