@@ -210,6 +210,24 @@ jooption.operator {
   }
 }
 
+@media only screen and (max-height: 480px) {
+  .menu jooptionitem {
+    padding: 6px 0;
+  }
+  .menu jolabel, .menu jooption {
+    margin: 0px 10px 6px 10px
+  }
+}
+
+@media only screen and (max-height: 400px) {
+  .menu jooptionitem, .menu jobutton {
+    padding: 4px 0;
+  }
+  .menu jolabel, .menu jooption {
+    margin: 0px 10px 5px 10px
+  }
+}
+
 jotoolbar jobutton {
   background: transparent url(back-mini.png) 10px center no-repeat;
   border: 1px solid rgba(0, 0, 0, 0.3);

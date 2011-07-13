@@ -40,13 +40,14 @@ Problem.prototype = {
   }
 };
 
-Problems = function(operator, qty, difficulty) {
+Problems = function(operator, qty, difficulty, typingDirection) {
   this.operator = operator;
   this.qty = qty;
   this.difficulty = difficulty;
   this.iCurrent = -1;
   this.problems = new Array(qty);
   this.totalTime = 0;
+  this.typingDirection = typingDirection || "l2r";
 
   for (var i = 0; i < this.problems.length; i++) {
     this.problems[i] = Problem.generate(operator, difficulty);
@@ -189,7 +190,11 @@ ProblemCard.extend(joCard, {
     var number = a.substring(sign.length);
     
     if (number.length < 3) {
-      this.answer.setData(sign + number + button);
+      if (App.problems.typingDirection === 'l2r') {
+        this.answer.setData(sign + number + button);
+      } else {
+        this.answer.setData(sign + button + number);
+      }
     }
   },
   minusKeyPressed: function() {
@@ -201,7 +206,14 @@ ProblemCard.extend(joCard, {
   },
   eraseKeyPressed: function() {
     var a = this.answer.getData();
-    this.answer.setData(a.substring(0, a.length - 1));
+    var sign = a.charAt(0) == '-' ? '-' : '';
+    var number = a.substring(sign.length);
+    
+    if (App.problems.typingDirection === 'l2r') {
+      this.answer.setData(a.substring(0, a.length - 1));
+    } else {
+      this.answer.setData(sign + number.substring(1));
+    }
   },
   equalsKeyPressed: function() {
     App.stack.push(

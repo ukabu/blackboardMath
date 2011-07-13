@@ -21,12 +21,17 @@ joCache.set("menu", function() {
     new joOption([{title: "10", id: 10}, {title: "25", id: 25}, {title: "50", id: 50}], preferences.link("qty")).setValue(1),
     new joLabel("Difficulty"),
     new joOption([{title: "Normal", id: 12}, {title: "Hard", id: 24}], preferences.link("difficulty")).setValue(0),
+    new joLabel("Typing direction"),
+    new joOption([
+      {title: '&larr;&#x005F;123', id: 'r2l'},
+      {title: '123&#x005F;&rarr;', id: 'l2r'}
+    ], App.preferences.link('typingDirection')).setValue(App.preferences.getProperty('typingDirection') === 'l2r' ? 1 : 0),
     new joButton("Start").selectEvent.subscribe(function() {
       App.track("App", "Start", "o:"+preferences.getProperty("operator")+",q:"+preferences.getProperty("qty")+",d:"+preferences.getProperty("difficulty"));
-      App.problems = new Problems(preferences.getProperty("operator"), preferences.getProperty("qty"), preferences.getProperty("difficulty"));
+      App.problems = new Problems(preferences.getProperty("operator"), preferences.getProperty("qty"), preferences.getProperty("difficulty"), App.preferences.getProperty('typingDirection'));
       App.nextProblem();
     })
-  ]).setTitle("Blackboard / Math!");
+  ]).setTitle("Blackboard / Math!").setStyle('menu');
   
   return card;
 });

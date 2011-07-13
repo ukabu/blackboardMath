@@ -68,9 +68,11 @@ App = {
     this.preferences = new joRecord(this);
     this.preferences.load = function() {
       this.data.statisticsTracking = localStorage.getItem('statisticsTracking') !== 'false';
+      this.data.typingDirection = localStorage.getItem('typingDirection') || 'l2r';
     }
     this.preferences.save = function() {
-      window.localStorage.setItem('statisticsTracking', this.data.statisticsTracking);
+      localStorage.setItem('statisticsTracking', this.data.statisticsTracking);
+      localStorage.setItem('typingDirection', this.data.typingDirection);
     }
     
     this.preferences.load();
