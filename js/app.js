@@ -100,7 +100,7 @@ App = {
 	  new joButton("i").selectEvent.subscribe(function() {
 	    App.scn.showPopup(helpPopup);
 	  }),
-	  "Learn you math tables in a flash!"
+	  "Learn your math tables in a flash!"
 	])
       ]).setStyle({position: "absolute", top: "0", left: "0", bottom: "0", right: "0"})
     );
