@@ -61,7 +61,7 @@ App = {
       if (response.isInternetConnectionAvailable) {
 	callback();
       }
-    }
+    };
     serviceBridge.call("palm://com.palm.connectionmanager/getStatus");
   },
   load: function() {
@@ -69,11 +69,11 @@ App = {
     this.preferences.load = function() {
       this.data.statisticsTracking = localStorage.getItem('statisticsTracking') !== 'false';
       this.data.typingDirection = localStorage.getItem('typingDirection') || 'l2r';
-    }
+    };
     this.preferences.save = function() {
       localStorage.setItem('statisticsTracking', this.data.statisticsTracking);
       localStorage.setItem('typingDirection', this.data.typingDirection);
-    }
+    };
     
     this.preferences.load();
     

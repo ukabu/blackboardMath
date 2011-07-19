@@ -29,7 +29,7 @@ Problem.generate = function(operator, difficulty) {
   }
   
   return problem;
-}
+};
 Problem.prototype = {
   validate: function(answer) {
     answer = parseInt(answer);

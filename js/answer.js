@@ -36,12 +36,12 @@ BadAnswerCard = function() {
     ).setStyle({id:"nextProblem"}).selectEvent.subscribe(function(){
       App.nextProblem();
     })
-  ])
+  ]);
   this.setTitle("Blackboard Math!!!").setStyle({id: "problem"});
-}
+};
 BadAnswerCard.extend(joCard, {
   apply: function(problem, answer) {
-    if (answer == null || answer === '') {
+    if (answer === null || answer === '') {
       answer = 0;
     }
     this.problem.setData(problem);
@@ -76,9 +76,9 @@ GoodAnswerCard = function() {
     new joControl().setStyle({id:"nextProblem"}).selectEvent.subscribe(function(){
       App.nextProblem();
     })
-  ])
+  ]);
   this.setTitle("Blackboard / Math!!!").setStyle({id: "problem"});
-}
+};
 GoodAnswerCard.extend(joCard, {
   apply: function(problem, answer) {
     this.problem.setData(problem);
