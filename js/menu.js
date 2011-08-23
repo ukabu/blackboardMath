@@ -27,7 +27,6 @@ joCache.set("menu", function() {
       {title: '123&#x005F;&rarr;', id: 'l2r'}
     ], App.preferences.link('typingDirection')).setValue(App.preferences.getProperty('typingDirection') === 'l2r' ? 1 : 0),
     new joButton("Start").selectEvent.subscribe(function() {
-      App.track("App", "Start", "o:"+preferences.getProperty("operator")+",q:"+preferences.getProperty("qty")+",d:"+preferences.getProperty("difficulty"));
       App.problems = new Problems(preferences.getProperty("operator"), preferences.getProperty("qty"), preferences.getProperty("difficulty"), App.preferences.getProperty('typingDirection'));
       App.nextProblem();
     })

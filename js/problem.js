@@ -32,7 +32,7 @@ Problem.generate = function(operator, difficulty) {
 };
 Problem.prototype = {
   validate: function(answer) {
-    answer = parseInt(answer);
+    answer = parseInt(answer, 10);
     this.success = answer == this.solution;
     this.skipped = false;
     
