@@ -131,7 +131,7 @@ App = {
     var tracking = this.preferences.link("statisticsTracking");
     
     this.helpPopup = [
-      new joTitle("Information"),
+      new joTitle("About"),
       new joGroup([
 //        new joFlexrow([new joCaption('Collect anonymous statistics'), new joToggle(tracking)]),
         new joButton("Homepage").selectEvent.subscribe(function() {this.showDocument("https://github.com/ukabu/blackboardMath#readme");}.bind(this)),
