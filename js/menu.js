@@ -29,8 +29,13 @@ joCache.set("menu", function() {
     new joButton("Start").selectEvent.subscribe(function() {
       App.problems = new Problems(preferences.getProperty("operator"), preferences.getProperty("qty"), preferences.getProperty("difficulty"), App.preferences.getProperty('typingDirection'));
       App.nextProblem();
-    })
+    }),
+    new joFooter([
+      new joButton('About').selectEvent.subscribe(function() {
+        App.scn.showPopup(App.helpPopup);
+      })
+    ])
   ]).setTitle("Blackboard / Math!").setStyle('menu');
-  
+
   return card;
 });
