@@ -223,6 +223,15 @@ jooption.operator {
   }
 }
 
+jobackbutton {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+jobackbutton:active {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
 @media only screen and (max-height: 400px) {
   .menu jooptionitem, .menu jobutton {
     padding: 4px 0;
