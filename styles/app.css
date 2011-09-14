@@ -94,15 +94,16 @@ uCongrats {
   font-family: sans-serif;
   font-weight: bold;
   /* FIXME: cause rendering issues on webos: text-shadow: 0.01em 0.01em 0.03em green, -0.01em -0.01em 0.03em green; */
-
-  -webkit-transform: rotate(-32deg);
-  
-  -webkit-animation-name: explode;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-duration: 1s;
 }
 
-@-webkit-keyframes explode {
+.swirl {
+  -webkit-transform: rotate(-32deg);
+  -webkit-animation-name: swirl;
+}
+
+@-webkit-keyframes swirl {
   from {
     -webkit-transform: rotate(-720deg) scale(0);
   }
@@ -111,7 +112,84 @@ uCongrats {
     -webkit-transform: rotate(-32deg) scale(1);
    }
 }
+
+.inplode { /* does not work very well on webos devices  - animation is not smooth when transform cause element to be offscreen */
+  -webkit-transform: rotate(7deg);
+  -webkit-animation-name: inplode;
+}
+@-webkit-keyframes inplode {
+  from {
+    -webkit-transform: scale(50) rotate(-20deg);
+  }
   
+  60% {
+    -webkit-transform: scale(0.7) rotate(15deg);
+  }
+  to {
+    -webkit-transform: scale(1) rotate(7deg);
+  }
+}
+  
+.explode {
+  -webkit-transform: rotate(-13deg);
+  -webkit-animation-name: explode;
+}
+@-webkit-keyframes explode {
+  from {
+    -webkit-transform: scale(0) rotate(48deg);
+  }
+  
+  70% {
+    -webkit-transform: scale(1.8) rotate(-34deg);
+  }
+  to {
+    -webkit-transform: scale(1) rotate(-13deg);
+  }
+}
+
+.heartbeat {
+  -webkit-transform: rotate(3deg);
+  -webkit-animation-name: heartbeat;
+}
+@-webkit-keyframes heartbeat {
+  from {
+    -webkit-transform: scale(0) rotate(5deg);
+  }
+  30% {
+    -webkit-transform: scale(1.4) rotate(2deg);
+  }
+  50% {
+    -webkit-transform: scale(0.8) rotate(3deg);
+  }
+  70% {
+    -webkit-transform: scale(1.6) rotate(7deg);
+  }
+  to {
+    -webkit-transform: scale(1) rotate(3deg);
+  }
+}
+
+.shake{
+  -webkit-transform: none;
+  -webkit-animation-name: shake;
+  -webkit-animation-iteration-count: 5;
+  -webkit-animation-duration: 0.1s;
+}
+@-webkit-keyframes shake {
+  from {
+    -webkit-transform: translateX(0px);
+  }
+  33% {
+    -webkit-transform: translateX(-20px);
+  }
+  66% {
+    -webkit-transform: translateX(20px);
+  }
+  to {
+    -webkit-transform: translateX(0px);
+  }
+}
+
 .total {
   margin-left: 0;
   margin-right: 0;
