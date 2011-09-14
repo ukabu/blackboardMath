@@ -82,7 +82,7 @@ App = {
     problem = this.problems.next();
     this.problems.startTimer();
     if (problem) {
-      this.stack.push(joCache.get("problem").newProblem(problem));
+      this.stack.push(new ProblemCard().newProblem(problem));
     } else {
       this.problems.stopTimer();
       this.stack.push(joCache.get("summary").apply(this.problems));

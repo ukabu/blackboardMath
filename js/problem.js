@@ -158,7 +158,7 @@ ProblemCard = function() {
   this.solution = this.problem.link("solution");
   this.answer = new joRecord({answer: ""}).link("answer");
 
-  joCard.call(this, [new joContainer([
+  joCard.call(this, [this.equationPanel = new joContainer([
       new joContainer([
         new uChalk(this.operator).setStyle({id: "operator"}),
         new joContainer([
@@ -167,9 +167,9 @@ ProblemCard = function() {
         ]).setStyle({id:"operands"})
       ]).setStyle({id: "question"}),
       new joHTML("<div class='chalk'><span></span><hr/></div>").setStyle("total"),
-      new uNumber(this.answer).setStyle({id: "answer"})
+      this.answerControl = new uNumber(this.answer).setStyle({id: "answer"})
     ]).setStyle({id:"equation"}),
-    new Keypad().setStyle({id: "keypad"})
+    this.keypadPanel = new Keypad().setStyle({id: "keypad"})
       .numberKeyEvent.subscribe(this.numberKeyPressed.bind(this))
       .equalsKeyEvent.subscribe(this.equalsKeyPressed.bind(this))
       .eraseKeyEvent.subscribe(this.eraseKeyPressed.bind(this))
@@ -216,10 +216,24 @@ ProblemCard.extend(joCard, {
     }
   },
   equalsKeyPressed: function() {
-    App.stack.push(
-      joCache.get(this.problem.getData().validate(this.answer.getData()) ? "goodAnswer" : "badAnswer")
-        .apply(this.problem.getData(), this.answer.getData())
-    );
+    this.problem.getData().validate(this.answer.getData()) ? this.showGoodAnswer() : this.showBadAnswer();
+  },
+  showGoodAnswer: function() {
+    this.keypadPanel.clear();
+    this.push(new uCongrats(this.congrats).setStyle({id: "congrats"}));
+    this.push(new joControl().setStyle({id:"nextProblem"}).selectEvent.subscribe(function(){
+      App.nextProblem();
+    }));
+  },
+  showBadAnswer: function() {
+    if (this.answer.getData() === "") this.answer.setData(0);
+    this.answerControl.setStyle("strike");
+    this.equationPanel.push(new uNumber(this.solution).setStyle({id: "solution"}));
+    this.keypadPanel.clear();
+    this.push(new joControl(
+    ).setStyle({id:"nextProblem"}).selectEvent.subscribe(function(){
+      App.nextProblem();
+    }));
   }
 });
 
@@ -277,8 +291,14 @@ Keypad.extend(joContainer, {
   }
 });
 
-// using joCache here to defer creation of this
-// view until we actually use it
-joCache.set("problem", function() {
-  return new ProblemCard();
+uCongrats = function(data) {
+  joControl.apply(this, [data || "great"]);
+};
+
+uCongrats.extend(joControl, {
+  tagName: "uCongrats",
+  draw: function() {
+    var data = this.data ? this.data.toString() : "Great !";
+    this.container.innerHTML = '<span></span>'+data+'';
+  }
 });
