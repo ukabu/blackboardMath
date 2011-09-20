@@ -220,7 +220,7 @@ ProblemCard.extend(joCard, {
   },
   showGoodAnswer: function() {
     this.keypadPanel.clear();
-    this.push(new uCongrats(this.congrats).setStyle({id: "congrats", className: ["swirl", "explode", "heartbeat"][Math.floor(Math.random() * 3)]}));
+    this.push(new uCongrats().setStyle({id: "congrats", className: ["swirl", "explode", "heartbeat"][Math.floor(Math.random() * 3)]}));
     this.push(new joControl().setStyle({id:"nextProblem"}).selectEvent.subscribe(function(){
       App.nextProblem();
     }));
@@ -292,7 +292,10 @@ Keypad.extend(joContainer, {
 });
 
 uCongrats = function(data) {
-  joControl.apply(this, [data || (["Great !", "Bravo !", "Nice !", "Good !"][Math.floor(Math.random() * 4)])]);
+  if (!data) {
+    data = ["Great !", "Bravo !", "Nice !", "Good !"][Math.floor(Math.random() * 4)];
+  }
+  joControl.apply(this, [data]);
 };
 
 uCongrats.extend(joControl, {
