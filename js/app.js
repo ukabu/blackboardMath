@@ -134,8 +134,8 @@ App = {
       new joTitle("About"),
       new joGroup([
 //        new joFlexrow([new joCaption('Collect anonymous statistics'), new joToggle(tracking)]),
-        new joButton("Homepage").selectEvent.subscribe(function() {this.showDocument("https://github.com/ukabu/blackboardMath#readme");}.bind(this)),
-        new joButton("Support").selectEvent.subscribe(function() {this.showDocument("https://github.com/ukabu/blackboardMath/issues");}.bind(this)),
+        new joButton("Homepage").selectEvent.subscribe(function() {this.showDocument("http://bit.ly/hb0OoD");}.bind(this)),
+        new joButton("Support").selectEvent.subscribe(function() {this.showDocument("http://bit.ly/nXVvrw");}.bind(this)),
         new joButton("Share / Rate").selectEvent.subscribe(function() {this.showDocument("http://developer.palm.com/appredirect/?packageid=net.ukabu.blackboardmath");}.bind(this))
       ]),
       new joButton("Dismiss").selectEvent.subscribe(function() { App.scn.hidePopup(); })
