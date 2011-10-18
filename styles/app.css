@@ -29,7 +29,14 @@ jobutton { background-repeat: repeat-x; }
 }
 
 #keypad jobutton {
-  opacity: 0.40;
+  color: white;
+  background-color: #101010;
+  background-image: url(jo/subtle-matte-full.png);
+  border: none;
+}
+
+#keypad jobutton.focus {
+  background-color: #707070;
 }
 
 #problem {
