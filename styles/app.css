@@ -35,8 +35,14 @@ jobutton { background-repeat: repeat-x; }
   border: none;
 }
 
-#keypad jobutton.focus {
+#keypad jobutton:active {
   background-color: #707070;
+}
+
+#keypad jobutton.focus {
+  -webkit-box-shadow: inherit;
+  -moz-box-shadow: inherit;
+  box-shadow: inherit;
 }
 
 #problem {

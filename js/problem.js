@@ -266,7 +266,7 @@ Keypad = function() {
   this.plusMinusKeyEvent = new joSubject(this);
   var self = this;
   
-  var newKey = function(label, listener) { return new uButton(label).selectEvent.subscribe(listener.bind(self)); };
+  var newKey = function(label, listener) { return new joButton(label).selectEvent.subscribe(listener.bind(self)); };
 
   joContainer.call(this, [[
     new joFlexrow([newKey("1", this.numberKeyPressed), newKey("2", this.numberKeyPressed), newKey("3", this.numberKeyPressed)]),
