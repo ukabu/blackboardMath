@@ -135,7 +135,7 @@ App = {
       new joGroup([
 //        new joFlexrow([new joCaption('Collect anonymous statistics'), new joToggle(tracking)]),
         new joButton("Homepage").selectEvent.subscribe(function() {this.showDocument("https://plus.google.com/111142496865193977110/about");}.bind(this)),
-        new joButton("Support").selectEvent.subscribe(function() {this.showDocument("http://bit.ly/nXVvrw");}.bind(this))
+        new joButton("Support").selectEvent.subscribe(function() {this.showDocument("https://github.com/ukabu/blackboardMath/issues");}.bind(this))
       ]),
       new joButton("Dismiss").selectEvent.subscribe(function() { App.scn.hidePopup(); })
     ];
