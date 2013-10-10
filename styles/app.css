@@ -286,21 +286,22 @@ jooption.operator {
   font-size: large;
 }
 
-@media only screen and (min-width: 760px) {
+@media only screen and (min-width: 760px),
+  only screen and (min-height: 600px)   {
   #equation {
-    font-size: 10em;
+    font-size: 8em;
     width: 320px;
     font-weight: normal;
   }
   uCongrats {
-    font-size: 10em;
+    font-size: 8em;
     top: 160px;
     left: 60px;
   }
   #solution {
   }
   #keypad {
-    -webkit-transform: scale(1.5);
+    -webkit-transform: scale(1.3);
     -webkit-transform-origin: bottom right;
   }
 }
