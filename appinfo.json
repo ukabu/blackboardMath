@@ -1,6 +1,6 @@
 {
 	"id": "net.ukabu.blackboardmath",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"vendor": "Ukabu",
 	"type": "web",
 	"main": "index.html",
