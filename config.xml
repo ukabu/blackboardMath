@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:cdv="http://cordova.apache.org/ns/1.0"
+	xmlns:gap   = "http://phonegap.com/ns/1.0"
 	id		= "net.ukabu.blackboardmath"
 	version 	= "0.9.2">
 
@@ -19,5 +20,5 @@
 	<content src="index.html" />
 	<preference name="Fullscreen" value="true" />
 	<access origin="*" />
-	<cdv:plugin name="org.apache.cordova.inappbrowser" />
+	<gap:plugin name="org.apache.cordova.inappbrowser" />
 </widget>
