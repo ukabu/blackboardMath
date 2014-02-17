@@ -1,4 +1,3 @@
-
 uNavbar = function(title) {
   if (title) this.firstTitle = title;
 
@@ -95,7 +94,7 @@ App = {
         target: url
       }));
     } else {
-      window.open(url, "_new");
+      window.open(url, "_system");
     }
     App.scn.hidePopup();
   },
