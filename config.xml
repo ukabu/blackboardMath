@@ -19,4 +19,7 @@
 	<content src="index.html" />
 	<preference name="Fullscreen" value="true" />
 	<access origin="*" />
+	<feature name="InAppBrowser">
+    		<param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+	</feature>
 </widget>
