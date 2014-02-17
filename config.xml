@@ -3,7 +3,7 @@
 	xmlns:cdv="http://cordova.apache.org/ns/1.0"
 	xmlns:gap   = "http://phonegap.com/ns/1.0"
 	id		= "net.ukabu.blackboardmath"
-	version 	= "0.9.2">
+	version 	= "1.0.5">
 
 	<name>Blackboard Math!</name>
 
@@ -19,6 +19,8 @@
 	<icon src="icon.png" />
 	<content src="index.html" />
 	<preference name="Fullscreen" value="true" />
+	<preference name="permissions" value="none"/>
 	<access origin="*" />
 	<gap:plugin name="org.apache.cordova.inappbrowser" />
+	<gap:platform name="android" />
 </widget>
