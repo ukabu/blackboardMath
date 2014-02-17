@@ -15,7 +15,7 @@
 		Ukabu
 	</author>
 
-	<icon src="icon.png" gap:role="default" />
+	<icon src="icon.png" />
 	<content src="index.html" />
 	<preference name="Fullscreen" value="true" />
 	<access origin="*" />
