@@ -20,6 +20,8 @@
 	<content src="index.html" />
 	<preference name="Fullscreen" value="true" />
 	<preference name="permissions" value="none"/>
+	<preference name="android-minSdkVersion" value="11" />
+	<preference name="android-targetSdkVersion" value="14" />
 	<access origin="*" />
 	<gap:plugin name="org.apache.cordova.inappbrowser" />
 	<gap:platform name="android" />
