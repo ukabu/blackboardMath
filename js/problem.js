@@ -219,6 +219,7 @@ ProblemCard.extend(joCard, {
     this.problem.getData().validate(this.answer.getData()) ? this.showGoodAnswer() : this.showBadAnswer();
   },
   showGoodAnswer: function() {
+    ga_storage._trackEvent('answer', 'good')
     this.keypadPanel.clear();
     this.push(new uCongrats().setStyle({id: "congrats", className: ["swirl", "explode", "heartbeat"][Math.floor(Math.random() * 3)]}));
     this.push(new joControl().setStyle({id:"nextProblem"}).selectEvent.subscribe(function(){
@@ -226,6 +227,7 @@ ProblemCard.extend(joCard, {
     }));
   },
   showBadAnswer: function() {
+    ga_storage._trackEvent('answer', 'bad')
     if (this.answer.getData() === "") this.answer.setData(0);
     this.answerControl.setStyle("strike");
     this.equationPanel.push(new uNumber(this.solution).setStyle({id: "solution", className: "shake"}));

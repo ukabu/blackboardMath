@@ -3,7 +3,7 @@
 	xmlns:cdv="http://cordova.apache.org/ns/1.0"
 	xmlns:gap   = "http://phonegap.com/ns/1.0"
 	id		= "net.ukabu.blackboardmath"
-	version 	= "1.0.5">
+	version 	= "1.0.6">
 
 	<name>Blackboard Math!</name>
 

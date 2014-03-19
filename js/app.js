@@ -81,8 +81,10 @@ App = {
     problem = this.problems.next();
     this.problems.startTimer();
     if (problem) {
+      ga_storage._trackEvent('game', 'nextProblem')      
       this.stack.push(new ProblemCard().newProblem(problem));
     } else {
+      ga_storage._trackEvent('game', 'end')
       this.problems.stopTimer();
       this.stack.push(joCache.get("summary").apply(this.problems));
     }
@@ -133,8 +135,8 @@ App = {
       new joTitle("About"),
       new joGroup([
 //        new joFlexrow([new joCaption('Collect anonymous statistics'), new joToggle(tracking)]),
-        new joButton("Homepage").selectEvent.subscribe(function() {this.showDocument("https://plus.google.com/111142496865193977110/about");}.bind(this)),
-        new joButton("Support").selectEvent.subscribe(function() {this.showDocument("https://github.com/ukabu/blackboardMath/issues");}.bind(this))
+        new joButton("Homepage").selectEvent.subscribe(function() {ga_storage._trackEvent('app', 'homepage'); this.showDocument("https://plus.google.com/111142496865193977110/about");}.bind(this)),
+        new joButton("Support").selectEvent.subscribe(function() {ga_storage._trackEvent('app', 'support'); this.showDocument("https://github.com/ukabu/blackboardMath/issues");}.bind(this))
       ]),
       new joButton("Dismiss").selectEvent.subscribe(function() { App.scn.hidePopup(); })
     ];

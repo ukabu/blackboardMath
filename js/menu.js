@@ -27,11 +27,13 @@ joCache.set("menu", function() {
       {title: '123&#x005F;&rarr;', id: 'l2r'}
     ], App.preferences.link('typingDirection')).setValue(App.preferences.getProperty('typingDirection') === 'l2r' ? 1 : 0),
     new joButton("Start").selectEvent.subscribe(function() {
+      ga_storage._trackEvent('game', 'start')
       App.problems = new Problems(preferences.getProperty("operator"), preferences.getProperty("qty"), preferences.getProperty("difficulty"), App.preferences.getProperty('typingDirection'));
       App.nextProblem();
     }),
     new joFooter([
       new joButton('About').selectEvent.subscribe(function() {
+        ga_storage._trackEvent('app', 'about')
         App.scn.showPopup(App.helpPopup);
       })
     ])
